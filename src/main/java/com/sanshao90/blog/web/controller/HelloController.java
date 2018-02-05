@@ -1,5 +1,6 @@
 package com.sanshao90.blog.web.controller;
 
+import com.sanshao90.blog.exception.BLogException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +25,10 @@ public class HelloController {
         map.addAttribute("host", "http://blog.didispace.com");
         // return模板文件的名称，对应src/main/resources/templates/index.html
         return "index";
+    }
+
+    @RequestMapping("/json")
+    public String  json() throws BLogException {
+        throw new BLogException("发生错误！");
     }
 }
