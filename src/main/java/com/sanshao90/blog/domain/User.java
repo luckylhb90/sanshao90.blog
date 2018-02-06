@@ -1,14 +1,12 @@
 package com.sanshao90.blog.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * @Project : sanshao90.blog
@@ -18,10 +16,12 @@ import javax.persistence.Id;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor(staticName = "of")
 @Entity
-public class User {
+public class User implements Serializable {
 
+    private static final long serialVersionUID = -1502355675352383565L;
     @Id
     @GeneratedValue
     private Long id;
@@ -31,4 +31,8 @@ public class User {
     @Column(nullable = false)
     @NonNull
     private Integer age;
+
+    public static User of (Long id, String name, Integer age) {
+        return new User (id, name, age);
+    }
 }
